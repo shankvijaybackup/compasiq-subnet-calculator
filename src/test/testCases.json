@@ -1,0 +1,177 @@
+{
+  "description": "Comprehensive test cases for manual and automated testing",
+  "standardSubnets": [
+    {
+      "name": "Typical home network",
+      "cidr": "192.168.1.0/24",
+      "network": "192.168.1.0",
+      "broadcast": "192.168.1.255",
+      "mask": "255.255.255.0",
+      "wildcard": "0.0.0.255",
+      "totalHosts": 256,
+      "usableHosts": 254,
+      "firstHost": "192.168.1.1",
+      "lastHost": "192.168.1.254",
+      "class": "Class C"
+    },
+    {
+      "name": "Small business /22",
+      "cidr": "192.168.0.0/22",
+      "network": "192.168.0.0",
+      "broadcast": "192.168.3.255",
+      "mask": "255.255.252.0",
+      "totalHosts": 1024,
+      "usableHosts": 1022,
+      "class": "Class C"
+    },
+    {
+      "name": "AWS default VPC",
+      "cidr": "172.31.0.0/16",
+      "network": "172.31.0.0",
+      "broadcast": "172.31.255.255",
+      "mask": "255.255.0.0",
+      "totalHosts": 65536,
+      "usableHosts": 65534,
+      "class": "Class B"
+    },
+    {
+      "name": "Private Class A",
+      "cidr": "10.0.0.0/8",
+      "network": "10.0.0.0",
+      "broadcast": "10.255.255.255",
+      "mask": "255.0.0.0",
+      "totalHosts": 16777216,
+      "usableHosts": 16777214,
+      "class": "Class A"
+    },
+    {
+      "name": "Point-to-point link",
+      "cidr": "192.168.1.0/30",
+      "network": "192.168.1.0",
+      "broadcast": "192.168.1.3",
+      "mask": "255.255.255.252",
+      "totalHosts": 4,
+      "usableHosts": 2,
+      "firstHost": "192.168.1.1",
+      "lastHost": "192.168.1.2",
+      "class": "Class C"
+    }
+  ],
+  "edgeCases": [
+    {
+      "name": "Single host /32",
+      "cidr": "8.8.8.8/32",
+      "network": "8.8.8.8",
+      "broadcast": "8.8.8.8",
+      "mask": "255.255.255.255",
+      "totalHosts": 1,
+      "usableHosts": 0,
+      "firstHost": null,
+      "lastHost": null,
+      "class": "Class A"
+    },
+    {
+      "name": "Point-to-point RFC 3021",
+      "cidr": "10.0.0.0/31",
+      "network": "10.0.0.0",
+      "broadcast": "10.0.0.1",
+      "mask": "255.255.255.254",
+      "totalHosts": 2,
+      "usableHosts": 0,
+      "class": "Class A"
+    },
+    {
+      "name": "Entire internet /0",
+      "cidr": "0.0.0.0/0",
+      "network": "0.0.0.0",
+      "broadcast": "255.255.255.255",
+      "mask": "0.0.0.0",
+      "totalHosts": 4294967296,
+      "class": "Class A"
+    },
+    {
+      "name": "Half internet /1",
+      "cidr": "128.0.0.0/1",
+      "network": "128.0.0.0",
+      "broadcast": "255.255.255.255",
+      "mask": "128.0.0.0",
+      "class": "Class B"
+    }
+  ],
+  "allPrefixes": [
+    { "prefix": 8, "mask": "255.0.0.0", "hosts": 16777216 },
+    { "prefix": 9, "mask": "255.128.0.0", "hosts": 8388608 },
+    { "prefix": 10, "mask": "255.192.0.0", "hosts": 4194304 },
+    { "prefix": 11, "mask": "255.224.0.0", "hosts": 2097152 },
+    { "prefix": 12, "mask": "255.240.0.0", "hosts": 1048576 },
+    { "prefix": 13, "mask": "255.248.0.0", "hosts": 524288 },
+    { "prefix": 14, "mask": "255.252.0.0", "hosts": 262144 },
+    { "prefix": 15, "mask": "255.254.0.0", "hosts": 131072 },
+    { "prefix": 16, "mask": "255.255.0.0", "hosts": 65536 },
+    { "prefix": 17, "mask": "255.255.128.0", "hosts": 32768 },
+    { "prefix": 18, "mask": "255.255.192.0", "hosts": 16384 },
+    { "prefix": 19, "mask": "255.255.224.0", "hosts": 8192 },
+    { "prefix": 20, "mask": "255.255.240.0", "hosts": 4096 },
+    { "prefix": 21, "mask": "255.255.248.0", "hosts": 2048 },
+    { "prefix": 22, "mask": "255.255.252.0", "hosts": 1024 },
+    { "prefix": 23, "mask": "255.255.254.0", "hosts": 512 },
+    { "prefix": 24, "mask": "255.255.255.0", "hosts": 256 },
+    { "prefix": 25, "mask": "255.255.255.128", "hosts": 128 },
+    { "prefix": 26, "mask": "255.255.255.192", "hosts": 64 },
+    { "prefix": 27, "mask": "255.255.255.224", "hosts": 32 },
+    { "prefix": 28, "mask": "255.255.255.240", "hosts": 16 },
+    { "prefix": 29, "mask": "255.255.255.248", "hosts": 8 },
+    { "prefix": 30, "mask": "255.255.255.252", "hosts": 4 },
+    { "prefix": 31, "mask": "255.255.255.254", "hosts": 2 },
+    { "prefix": 32, "mask": "255.255.255.255", "hosts": 1 }
+  ],
+  "invalidInputs": [
+    { "input": "256.1.1.1/24", "error": "Invalid IP (octet > 255)" },
+    { "input": "192.168.1/24", "error": "Invalid IP (missing octet)" },
+    { "input": "192.168.1.1.1/24", "error": "Invalid IP (too many octets)" },
+    { "input": "192.168.-1.1/24", "error": "Invalid IP (negative)" },
+    { "input": "192.168.1.a/24", "error": "Invalid IP (non-numeric)" },
+    { "input": "192.168.001.1/24", "error": "Invalid IP (leading zeros)" },
+    { "input": "192.168.1.1", "error": "Missing CIDR prefix" },
+    { "input": "192.168.1.1/", "error": "Empty CIDR prefix" },
+    { "input": "", "error": "Empty input" },
+    { "input": "not an ip/24", "error": "Invalid format" }
+  ],
+  "subnettingScenarios": [
+    {
+      "scenario": "Split home network into VLANs",
+      "parent": "192.168.1.0/24",
+      "newPrefix": 26,
+      "expectedSubnets": 4,
+      "subnets": [
+        "192.168.1.0/26",
+        "192.168.1.64/26",
+        "192.168.1.128/26",
+        "192.168.1.192/26"
+      ]
+    },
+    {
+      "scenario": "AWS VPC public/private subnets",
+      "parent": "10.0.0.0/16",
+      "newPrefix": 24,
+      "expectedSubnets": 256,
+      "note": "First 256 /24 subnets within 10.0.0.0/16"
+    },
+    {
+      "scenario": "Office floors with departments",
+      "parent": "172.16.0.0/22",
+      "newPrefix": 25,
+      "expectedSubnets": 8
+    }
+  ],
+  "classificationTests": [
+    { "ip": "10.0.0.0", "class": "Class A", "range": "0.0.0.0 - 127.255.255.255" },
+    { "ip": "127.0.0.1", "class": "Class A", "note": "Loopback" },
+    { "ip": "128.0.0.0", "class": "Class B", "range": "128.0.0.0 - 191.255.255.255" },
+    { "ip": "172.16.0.0", "class": "Class B", "note": "Private" },
+    { "ip": "192.0.0.0", "class": "Class C", "range": "192.0.0.0 - 223.255.255.255" },
+    { "ip": "192.168.0.0", "class": "Class C", "note": "Private" },
+    { "ip": "224.0.0.0", "class": "Class D (Multicast)", "range": "224.0.0.0 - 239.255.255.255" },
+    { "ip": "240.0.0.0", "class": "Class E (Experimental)", "range": "240.0.0.0 - 255.255.255.255" }
+  ]
+}
