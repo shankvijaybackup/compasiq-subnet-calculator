@@ -37,7 +37,7 @@ function App() {
 
   return (
     <HelmetProvider>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-white">
         <Helmet>
           <script type="application/ld+json">
             {JSON.stringify(schemaMarkup)}
